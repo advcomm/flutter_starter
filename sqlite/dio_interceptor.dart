@@ -28,7 +28,8 @@ class DioClient {
                   await secureStorage.write(key: "DatabaseName", value: tenant);
                   print('Initializing database for tenant: $tenant');
                   await DatabaseSetup.initialize();
-                  await SSEManager.initializeSSE('http://192.168.0.87:3000');
+                  // await SSEManager.initializeSSE('http://192.168.0.87:3000');
+                  await SSEManager.initializeSSE('http://$audDomain');
                   print('Database initialized successfully.');
                 }
               } catch (e) {
