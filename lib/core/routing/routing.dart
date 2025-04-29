@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_router/go_router.dart';
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../../custom/routing/routing.dart';
 import '../../views/auth/auth_view.dart';
 import '../../views/dashboard/dashboard_view.dart';
@@ -11,13 +11,13 @@ bool isAuthenticated = false;
 bool isEntitySelected = false;
 
 Future<void> checkAuthentication() async {
-  isAuthenticated = true;
-  isEntitySelected = true;
-  // final FlutterSecureStorage secureStorage = FlutterSecureStorage();
-  // final String? entities = await secureStorage.read(key: "Entities_List");
-  // final String? jwtToken = await secureStorage.read(key: "JWT_Token");
-  // isAuthenticated = entities != null && entities.isNotEmpty;
-  // isEntitySelected = jwtToken != null && jwtToken.isNotEmpty;
+  // isAuthenticated = true;
+  // isEntitySelected = true;
+  final FlutterSecureStorage secureStorage = FlutterSecureStorage();
+  final String? entities = await secureStorage.read(key: "Entities_List");
+  final String? jwtToken = await secureStorage.read(key: "JWT_Token");
+  isAuthenticated = entities != null && entities.isNotEmpty;
+  isEntitySelected = jwtToken != null && jwtToken.isNotEmpty;
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();

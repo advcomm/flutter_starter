@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 import 'package:flutter_starter/views/nav/custom_app_bar.dart';
 
 class DashboardView extends StatefulWidget {
@@ -45,12 +44,12 @@ class _DashboardViewState extends State<DashboardView> {
             ),
           ),
 
-          // WebView
-          Expanded(
-            child: InAppWebView(
-              initialFile: "../dashboard.html",
-            ),
-          ),
+          // // WebView
+          // Expanded(
+          //   child: InAppWebView(
+          //     initialFile: "../dashboard.html",
+          //   ),
+          // ),
         ],
       ),
     );

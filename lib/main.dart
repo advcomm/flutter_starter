@@ -1,38 +1,34 @@
 import 'package:flutter/material.dart';
+
+
 import 'package:url_strategy/url_strategy.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'core/deeplinking/deep_link_handler.dart';
 import 'core/routing/routing.dart';
+import 'core/sdks/setup_database.dart';
 import 'core/sdks/sso.dart';
-
+import 'custom/lang/supported_locales.dart';
+import 'custom/constants.dart';
 
 
 void main() async {
   setPathUrlStrategy();
   WidgetsFlutterBinding.ensureInitialized();
+  setupDatabaseFactory();
   await EasyLocalization.ensureInitialized();
+  // await initializeSsoSdk('https://auth1.3u.gg', 'api.3u.gg');
+  await initializeSsoSdk(authUrl, audDomain);
 
-  await initializeSsoSdk('https://auth1.3u.gg', 'api.3u.gg');
   // await FirebaseService.initializeFirebase();
   runApp(
     EasyLocalization(
-      supportedLocales: _getSupportedLocales(),
+      supportedLocales: getSupportedLocales(),
       path: 'lib/custom/lang', // Path to translation files
       fallbackLocale: Locale('en'),
       child: const MyApp(),
     ),
   );
 }
-
-List<Locale> _getSupportedLocales() {
-  return [
-    Locale('en'),
-    Locale('ar'),
-    Locale('de'),
-    // Add more as needed...
-  ];
-}
-
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
