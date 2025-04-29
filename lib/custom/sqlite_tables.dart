@@ -16,9 +16,6 @@ const String createTblProducts = '''
     ProductName TEXT,
     CategoryID INTEGER,
     Price REAL,
-    LastUpdatedTXID INTEGER DEFAULT 0,
-    LastUpdated TEXT,
-    DeletedTXID INTEGER DEFAULT NULL,
     FOREIGN KEY (CategoryID) REFERENCES tblcategories(CategoryID)
   );
 ''';
@@ -27,10 +24,7 @@ const String createTblOrders = '''
   CREATE TABLE IF NOT EXISTS tblorders (
     OrderID INTEGER PRIMARY KEY,
     OrderDate TEXT,
-    CustomerName TEXT,
-    LastUpdatedTXID INTEGER DEFAULT 0,
-    LastUpdated TEXT,
-    DeletedTXID INTEGER DEFAULT NULL
+    CustomerName TEXT
   );
 ''';
 

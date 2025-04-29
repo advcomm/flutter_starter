@@ -31,6 +31,10 @@ class DatabaseSetup {
       final columns = await db.rawQuery("PRAGMA table_info($tableName);");
       final existingColumns = columns.map((c) => c['name']).toSet();
 
+      if (!existingColumns.contains('LastUpdatedTXID')) {
+        print("⚡ Adding missing 'LastUpdatedTXID' to $tableName");
+        await db.execute('ALTER TABLE $tableName ADD COLUMN LastUpdatedTXID INTEGER DEFAULT 0;');
+      }
       if (!existingColumns.contains('LastUpdated')) {
         print("⚡ Adding missing 'LastUpdated' to $tableName");
         await db.execute('ALTER TABLE $tableName ADD COLUMN LastUpdated TEXT;');
